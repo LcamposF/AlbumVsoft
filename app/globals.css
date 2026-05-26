@@ -7,7 +7,7 @@
 body {
   background:
     radial-gradient(circle at top left, rgba(34, 197, 94, 0.35), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(250, 204, 21, 0.28), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(250, 204, 21, 0.25), transparent 35%),
     linear-gradient(135deg, #052e16, #0f172a 45%, #1e3a8a);
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
@@ -15,266 +15,137 @@ body {
 }
 
 .home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
   min-height: 100vh;
-  padding: 40px;
-}
-
-.card {
-  background: linear-gradient(180deg, #063b1f, #111827);
-  padding: 40px;
-  border-radius: 24px;
-  width: 350px;
-  text-align: center;
-  border: 2px solid #facc15;
-  box-shadow:
-    0 0 20px rgba(250, 204, 21, 0.25),
-    0 0 35px rgba(34, 197, 94, 0.2);
-}
-
-h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
-}
-
-p {
-  opacity: 0.7;
-  margin-bottom: 30px;
-}
-
-button {
-  background: #facc15;
-  color: #052e16;
-  border: none;
-  padding: 16px 24px;
-  border-radius: 14px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
-}
-
-.figurinha {
-  width: 260px;
-  background: linear-gradient(180deg, #22c55e, #0f172a);
-  padding: 16px;
-  border-radius: 24px;
-  text-align: center;
-  animation: aparecer 0.5s ease;
-  box-shadow: 0 0 30px rgba(34, 197, 94, 0.5);
-}
-
-.figurinha img {
-  border-radius: 18px;
-}
-
-.figurinha h2 {
-  margin-top: 12px;
-  font-size: 28px;
-}
-
-.figurinha span {
-  display: block;
-  opacity: 0.8;
-  margin-top: 6px;
-}
-
-.figurinha strong {
-  display: block;
-  margin-top: 14px;
-  color: gold;
-  font-size: 20px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 340px minmax(280px, 420px) 360px;
+  grid-template-areas: "album figurinha painel";
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
 }
 
 .album {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: #111827;
-  padding: 20px;
-  border-radius: 20px;
-  width: 420px;
+  grid-area: album;
+  width: 100%;
+  max-width: 100%;
+  max-height: 82vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: rgba(15, 23, 42, 0.92);
+  padding: 24px;
+  border-radius: 24px;
   border: 1px solid #334155;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.3);
 }
 
-.album h2 {
-  margin-bottom: 16px;
+.album-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.album-topo h2 {
+  font-size: 28px;
+}
+
+.botao-expandir {
+  width: auto;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-size: 16px;
+  background: #facc15;
+  color: #052e16;
 }
 
 .grid {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 14px;
 }
 
 .mini-card {
   background: #1e293b;
-  padding: 8px;
-  border-radius: 12px;
+  padding: 10px;
+  border-radius: 14px;
   text-align: center;
-  width: 90px;
+  min-height: 150px;
+  min-width: 0;
 }
 
 .mini-card img {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
   border-radius: 10px;
 }
 
 .mini-card span {
   display: block;
-  margin-top: 6px;
-  font-size: 12px;
+  margin-top: 8px;
+  font-size: 14px;
 }
 
-.repetida {
-  margin-top: 14px;
-  background: #dc2626;
-  padding: 10px;
+.mini-card.vazio {
+  border: 1px dashed #475569;
+  background: #0f172a;
+  opacity: 0.9;
+}
+
+.slot-vazio {
+  width: 80px;
+  height: 100px;
+  margin: 0 auto;
   border-radius: 10px;
-  font-weight: bold;
-  animation: piscar 0.5s infinite;
-}
-
-@keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: scale(0.7);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes piscar {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-.progresso {
-  margin-bottom: 24px;
-}
-
-.progresso span {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #d1d5db;
-}
-
-.barra {
-  width: 100%;
-  height: 12px;
   background: #1e293b;
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.barra-preenchida {
-  height: 100%;
-  background: linear-gradient(90deg, #22c55e, #eab308);
-  border-radius: 999px;
-  transition: 0.4s;
-}
-
-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.botao-reset {
-  margin-top: 12px;
-  background: #334155;
-  color: white;
-}
-
-.pack {
-  width: 260px;
-  text-align: center;
-  animation: aparecer 0.3s ease;
-}
-
-.pack-card {
-  height: 360px;
-  border-radius: 24px;
-  background: linear-gradient(135deg, #22c55e, #eab308, #38bdf8);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 72px;
-  box-shadow: 0 0 50px rgba(234, 179, 8, 0.5);
-  animation: abrirPack 0.9s ease infinite;
-}
-
-.pack p {
-  margin-top: 18px;
+  color: #64748b;
+  font-size: 46px;
   font-weight: bold;
-  opacity: 1;
 }
 
-.figurinha.comum {
-  background: linear-gradient(180deg, #22c55e, #0f172a);
+.area-figurinha {
+  grid-area: figurinha;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 540px;
 }
 
-.figurinha.rara {
-  background: linear-gradient(180deg, #2563eb, #0f172a);
-  box-shadow: 0 0 35px rgba(37, 99, 235, 0.7);
+.card {
+  grid-area: painel;
+  background: linear-gradient(180deg, #063b1f, #111827);
+  padding: 40px;
+  border-radius: 24px;
+  width: 100%;
+  text-align: center;
+  border: 2px solid #facc15;
+  box-shadow:
+    0 0 25px rgba(250, 204, 21, 0.25),
+    0 0 45px rgba(34, 197, 94, 0.2);
 }
 
-.figurinha.épica {
-  background: linear-gradient(180deg, #9333ea, #0f172a);
-  box-shadow: 0 0 35px rgba(147, 51, 234, 0.7);
+h1 {
+  font-size: 48px;
+  line-height: 1.15;
+  margin-bottom: 14px;
 }
 
-.figurinha.lendária {
-  background: linear-gradient(180deg, #facc15, #78350f);
-  box-shadow: 0 0 45px rgba(250, 204, 21, 0.9);
-  animation: aparecer 0.5s ease, brilhoLendario 1.2s infinite alternate;
+p {
+  opacity: 0.75;
+  margin-bottom: 28px;
 }
 
-@keyframes abrirPack {
-  0% {
-    transform: rotate(-4deg) scale(1);
-  }
-
-  50% {
-    transform: rotate(4deg) scale(1.05);
-  }
-
-  100% {
-    transform: rotate(-4deg) scale(1);
-  }
-}
-
-@keyframes brilhoLendario {
-  from {
-    filter: brightness(1);
-  }
-
-  to {
-    filter: brightness(1.25);
-  }
-}
-.creditos {
+.creditos,
+.coins {
   background: #1e293b;
-  padding: 12px;
-  border-radius: 12px;
-  margin-bottom: 18px;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 16px;
   font-weight: bold;
   color: #d1d5db;
 }
@@ -282,45 +153,58 @@ button:disabled {
 .creditos strong {
   color: #22c55e;
 }
-.mini-card.vazio {
-  border: 1px dashed #475569;
-  background: #0f172a;
-  opacity: 0.75;
-}
-
-.slot-vazio {
-  width: 80px;
-  height: 100px;
-  border-radius: 10px;
-  background: #1e293b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #64748b;
-  font-size: 42px;
-  font-weight: bold;
-}
-
-.completo {
-  background: linear-gradient(90deg, #facc15, #22c55e);
-  color: #111827;
-  padding: 12px;
-  border-radius: 12px;
-  margin-bottom: 18px;
-  font-weight: bold;
-  box-shadow: 0 0 25px rgba(250, 204, 21, 0.45);
-}
-.coins {
-  background: #1e293b;
-  padding: 12px;
-  border-radius: 12px;
-  margin-bottom: 18px;
-  font-weight: bold;
-  color: #d1d5db;
-}
 
 .coins strong {
   color: #facc15;
+}
+
+.progresso {
+  margin-bottom: 24px;
+}
+
+.progresso span {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #e5e7eb;
+}
+
+.barra {
+  width: 100%;
+  height: 14px;
+  background: #1e293b;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barra-preenchida {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #facc15);
+  border-radius: 999px;
+  transition: 0.4s;
+}
+
+button {
+  width: 100%;
+  background: #facc15;
+  color: #052e16;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .botao-loja {
@@ -333,29 +217,136 @@ button:disabled {
   background: #475569;
   color: #94a3b8;
 }
-.album-topo {
+
+.botao-reset {
+  margin-top: 12px;
+  background: #334155;
+  color: white;
+}
+
+.figurinha {
+  width: 300px;
+  background: linear-gradient(180deg, #22c55e, #0f172a);
+  padding: 18px;
+  border-radius: 28px;
+  text-align: center;
+  animation: aparecer 0.5s ease;
+  box-shadow: 0 0 40px rgba(34, 197, 94, 0.5);
+}
+
+.figurinha img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.figurinha h2 {
+  margin-top: 18px;
+  font-size: 32px;
+}
+
+.figurinha strong {
+  display: block;
+  margin-top: 12px;
+  color: #facc15;
+  font-size: 24px;
+}
+
+.figurinha.comum {
+  background: linear-gradient(180deg, #22c55e, #0f172a);
+}
+
+.figurinha.rara {
+  background: linear-gradient(180deg, #2563eb, #0f172a);
+  box-shadow: 0 0 40px rgba(37, 99, 235, 0.7);
+}
+
+.figurinha.épica {
+  background: linear-gradient(180deg, #9333ea, #0f172a);
+  box-shadow: 0 0 40px rgba(147, 51, 234, 0.7);
+}
+
+.figurinha.lendária {
+  background: linear-gradient(180deg, #facc15, #78350f);
+  box-shadow: 0 0 55px rgba(250, 204, 21, 0.9);
+  animation: aparecer 0.5s ease, brilhoLendario 1.2s infinite alternate;
+}
+
+.repetida {
+  margin-top: 16px;
+  background: #dc2626;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: bold;
+  animation: piscar 0.6s infinite;
+}
+
+.pack {
+  width: 300px;
+  text-align: center;
+  animation: aparecer 0.3s ease;
+}
+
+.pack-card {
+  height: 420px;
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, #16a34a 0 35%, #facc15 35% 65%, #2563eb 65%);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  font-size: 78px;
+  box-shadow:
+    0 0 45px rgba(250, 204, 21, 0.55),
+    0 0 65px rgba(34, 197, 94, 0.35);
+  animation: abrirPack 0.9s ease infinite;
+}
+
+.pack p {
+  margin-top: 18px;
+  font-weight: bold;
+  opacity: 1;
+}
+
+.card-vazio {
+  width: 300px;
+  min-height: 420px;
+  border: 2px dashed #475569;
+  border-radius: 28px;
+  background: rgba(15, 23, 42, 0.72);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 16px;
-  margin-bottom: 16px;
 }
 
-.album-topo h2 {
-  margin-bottom: 0;
+.card-vazio span {
+  color: #64748b;
+  font-size: 96px;
+  font-weight: bold;
 }
 
-.botao-expandir {
-  padding: 8px 12px;
-  border-radius: 10px;
-  font-size: 14px;
-  background: #334155;
+.card-vazio p {
+  margin: 0;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.completo {
+  background: linear-gradient(90deg, #facc15, #22c55e);
+  color: #111827;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-weight: bold;
+  box-shadow: 0 0 25px rgba(250, 204, 21, 0.45);
 }
 
 .modal-album {
   position: fixed;
   inset: 0;
-  background: rgba(2, 6, 23, 0.82);
+  background: rgba(2, 6, 23, 0.86);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -379,20 +370,26 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
+}
+
+.modal-topo h2 {
+  font-size: 30px;
 }
 
 .botao-fechar {
-  background: #facc15;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-size: 14px;
+  width: auto;
+  background: #dc2626;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 16px;
 }
 
 .album-grande {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 20px;
+  gap: 22px;
 }
 
 .card-album {
@@ -421,7 +418,7 @@ button:disabled {
 }
 
 .card-album.vazio {
-  opacity: 0.7;
+  opacity: 0.75;
   border-style: dashed;
 }
 
@@ -435,4 +432,213 @@ button:disabled {
   color: #64748b;
   font-size: 80px;
   font-weight: bold;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes piscar {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes abrirPack {
+  0% {
+    transform: rotate(-4deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(4deg) scale(1.05);
+  }
+
+  100% {
+    transform: rotate(-4deg) scale(1);
+  }
+}
+
+@keyframes brilhoLendario {
+  from {
+    filter: brightness(1);
+  }
+
+  to {
+    filter: brightness(1.25);
+  }
+}
+
+@media (max-width: 1100px) {
+  .home {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "painel"
+      "figurinha"
+      "album";
+    align-items: stretch;
+  }
+
+  .card,
+  .album,
+  .area-figurinha {
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .album {
+    max-height: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .home {
+    padding: 18px;
+    gap: 24px;
+  }
+
+  .album-topo {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .album-topo h2 {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .botao-expandir {
+    width: 100%;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mini-card img,
+  .slot-vazio {
+    width: 100%;
+    max-width: 90px;
+    height: 112px;
+  }
+
+  .mini-card span {
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+
+  .card {
+    padding: 28px;
+  }
+
+  .figurinha,
+  .pack,
+  .card-vazio {
+    width: 100%;
+  }
+}
+.trocas {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 18px;
+}
+
+.trocas span {
+  display: block;
+  margin-bottom: 10px;
+  color: #d1d5db;
+  font-weight: bold;
+}
+
+.trocas strong {
+  color: #facc15;
+}
+
+.botao-troca {
+  width: 100%;
+  background: #22c55e;
+  color: #052e16;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.botao-troca:disabled {
+  background: #475569;
+  color: #94a3b8;
+}
+
+.trocas p {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: #94a3b8;
+}
+.album-titulo {
+  min-width: 0;
+}
+
+.album-dono {
+  width: auto;
+  padding: 0;
+  margin-top: 6px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.album-dono:hover {
+  transform: none;
+  color: #facc15;
+}
+
+.nome-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.nome-form input {
+  min-width: 0;
+  width: 150px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+}
+
+.nome-form input:focus {
+  border-color: #facc15;
+}
+
+.nome-form button {
+  width: auto;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
 }
