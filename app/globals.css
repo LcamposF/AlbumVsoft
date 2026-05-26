@@ -642,3 +642,171 @@ button:disabled {
   border-radius: 10px;
   font-size: 14px;
 }
+.pack-card span {
+  animation: pulseIcone 0.45s ease infinite alternate;
+}
+
+.raridade-suspense {
+  margin-top: 18px;
+  font-size: 32px;
+  font-weight: 900;
+  color: #facc15;
+  letter-spacing: 1px;
+  animation: suspenseTexto 0.35s ease infinite alternate;
+}
+
+.pack-épica .pack-card {
+  background: linear-gradient(135deg, #9333ea, #4c1d95);
+  box-shadow: 0 0 60px rgba(147, 51, 234, 0.8);
+}
+
+.pack-rara .pack-card {
+  background: linear-gradient(135deg, #2563eb, #0f172a);
+  box-shadow: 0 0 60px rgba(37, 99, 235, 0.8);
+}
+
+.pack-lendária .pack-card {
+  background: linear-gradient(135deg, #facc15, #92400e);
+  box-shadow: 0 0 75px rgba(250, 204, 21, 0.95);
+}
+
+@keyframes pulseIcone {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.18);
+  }
+}
+
+@keyframes suspenseTexto {
+  from {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+
+  to {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.stats div {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 10px;
+  padding: 8px 4px;
+}
+
+.stats span {
+  display: block;
+  font-size: 10px;
+  color: #cbd5e1;
+  opacity: 1;
+}
+
+.stats strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 17px;
+  color: white;
+}
+
+.stats-menor {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.stats-menor div {
+  padding: 6px 2px;
+}
+
+.stats-menor span {
+  font-size: 9px;
+}
+
+.stats-menor strong {
+  font-size: 14px;
+}
+.codigo-diario {
+  background: #1e293b;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+}
+
+.codigo-diario span {
+  display: block;
+  margin-bottom: 10px;
+  color: #d1d5db;
+  font-weight: bold;
+}
+
+.codigo-diario div {
+  display: flex;
+  gap: 8px;
+}
+
+.codigo-diario input {
+  min-width: 0;
+  width: 100%;
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+}
+
+.codigo-diario input:focus {
+  border-color: #facc15;
+}
+
+.codigo-diario button {
+  width: auto;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.codigo-diario p {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: #94a3b8;
+  opacity: 1;
+}
+.figurinha.secreta {
+  background:
+    linear-gradient(135deg, #020617, #7f1d1d, #facc15);
+  box-shadow:
+    0 0 50px rgba(250, 204, 21, 0.8),
+    0 0 80px rgba(127, 29, 29, 0.55);
+  animation: aparecer 0.5s ease, brilhoLendario 0.8s infinite alternate;
+}
+
+.pack-secreta .pack-card {
+  background:
+    linear-gradient(135deg, #020617, #7f1d1d, #facc15);
+  box-shadow:
+    0 0 70px rgba(250, 204, 21, 0.95),
+    0 0 100px rgba(127, 29, 29, 0.7);
+}
+
+.slot-vazio.secreto,
+.card-bloqueado.secreto {
+  background:
+    linear-gradient(135deg, #020617, #1e293b, #7f1d1d);
+  color: #facc15;
+  box-shadow: inset 0 0 20px rgba(250, 204, 21, 0.18);
+}
+
+.card-album.vazio strong {
+  color: #94a3b8;
+}
