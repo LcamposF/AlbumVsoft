@@ -99,7 +99,7 @@ const stickers = [
   {
     id: 12,
     nome: "Vinicius Cruz",
-    imagem: "/images/vinicius-cruz.png",
+    imagem: "/images/cruz.png",
     raridade: "ÉPICA",
     stats: { caf: 91, foc: 95, bug: 90, call: 82, res: 87 },
   },
