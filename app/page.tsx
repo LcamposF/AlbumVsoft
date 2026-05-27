@@ -107,8 +107,22 @@ const stickers = [
     id: 13,
     nome: "Pricilla",
     imagem: "/images/pricilla.png",
-    raridade: "RARA",
+    raridade: "ÉPICA",
     stats: { caf: 90, foc: 93, bug: 82, call: 85, res: 80 },
+  },{
+    id: 14,
+    nome: "Fábio",
+    imagem: "/images/fabio.png",
+    raridade: "ÉPICA",
+    stats: { caf: 85, foc: 92, bug: 84, call: 79, res: 88 },
+  },
+  {
+    id: 15,
+    nome: "Brendo",
+    imagem: "/images/brendo.png",
+    raridade: "ÉPICA",
+    stats: { caf: 84, foc: 88, bug: 89, call: 82, res: 87 },
+
   },
   {
     id: 50,
@@ -560,7 +574,7 @@ export default function Home() {
       </section>
 
       <section className="card painel-principal">
-        <h1>🏆 TEAM VSOFT</h1>
+        <h1>TEAM OPERAÇÕES - VSOFT 🏆</h1>
         <p>Álbum oficial</p>
 
         <div className="creditos">
