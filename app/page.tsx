@@ -23,7 +23,7 @@ const stickers = [
     id: 1,
     nome: "Hadassa",
     imagem: "/images/hadassa.png",
-    raridade: "ÉPICA",
+    raridade: "RARA",
     stats: { caf: 92, foc: 88, bug: 81, call: 75, res: 96 },
   },
   {
@@ -86,7 +86,7 @@ const stickers = [
     id: 10,
     nome: "Bianca",
     imagem: "/images/bianca.png",
-    raridade: "ÉPICA",
+    raridade: "RARA",
     stats: { caf: 90, foc: 89, bug: 80, call: 87, res: 94 },
   },
   {
@@ -113,7 +113,7 @@ const stickers = [
     id: 14,
     nome: "Fábio",
     imagem: "/images/fabio.png",
-    raridade: "ÉPICA",
+    raridade: "RARA",
     stats: { caf: 85, foc: 92, bug: 84, call: 79, res: 88 },
   },
   {
@@ -125,8 +125,29 @@ const stickers = [
 
   },
   {
+    id: 16,
+    nome: "Weslley",
+    imagem: "/images/wes.png",
+    raridade: "LENDÁRIA",
+    stats: { caf: 94, foc: 98, bug: 92, call: 90, res: 89 },
+  },
+  {
+    id: 17,
+    nome: "Vinicius Ribeiro",
+    imagem: "/images/ribeiro.png",
+    raridade: "ÉPICA",
+    stats: { caf: 80, foc: 87, bug: 82, call: 79, res: 81 },
+  },
+  {
+    id: 18,
+    nome: "Huily",
+    imagem: "/images/huily.png",
+    raridade: "ÉPICA",
+    stats: { caf: 89, foc: 91, bug: 84, call: 81, res: 80 },
+  },
+  {
     id: 50,
-    nome: "Boss Final",
+    nome: "The Boss",
     imagem: "/images/boss.png",
     raridade: "SECRETA",
     secreto: true,
