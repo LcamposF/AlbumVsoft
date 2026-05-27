@@ -2,9 +2,21 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { createClient } from "@supabase/supabase-js";
 
 const CREDITOS_DIARIOS = 3;
 const CODIGO_DIARIO = "VSOFT2026";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+console.log("SUPABASE URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+console.log(
+  "SUPABASE KEY EXISTE:",
+  Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+);
 
 const stickers = [
   {
@@ -57,40 +69,40 @@ const stickers = [
     stats: { caf: 78, foc: 92, bug: 84, call: 74, res: 80 },
   },
   {
-  id: 8,
-  nome: "Lara",
-  imagem: "/images/lara.png",
-  raridade: "ÉPICA",
-  stats: { caf: 86, foc: 91, bug: 78, call: 84, res: 90 },
-},
-{
-  id: 9,
-  nome: "Gutemberg",
-  imagem: "/images/gutemberg.png",
-  raridade: "RARA",
-  stats: { caf: 88, foc: 93, bug: 89, call: 76, res: 82 },
-},
-{
-  id: 10,
-  nome: "Bianca",
-  imagem: "/images/bianca.png",
-  raridade: "ÉPICA",
-  stats: { caf: 90, foc: 89, bug: 80, call: 87, res: 94 },
-},
-{
-  id: 11,
-  nome: "Rayssa",
-  imagem: "/images/rayssa.png",
-  raridade: "RARA",
-  stats: { caf: 84, foc: 92, bug: 83, call: 88, res: 91 },
-},
-{
-  id: 12,
-  nome: "Vinicius Cruz",
-  imagem: "/images/vinicius-cruz.png",
-  raridade: "LENDÁRIA",
-  stats: { caf: 91, foc: 95, bug: 90, call: 82, res: 87 },
-},
+    id: 8,
+    nome: "Lara",
+    imagem: "/images/lara.png",
+    raridade: "ÉPICA",
+    stats: { caf: 86, foc: 91, bug: 78, call: 84, res: 90 },
+  },
+  {
+    id: 9,
+    nome: "Gutemberg",
+    imagem: "/images/gutemberg.png",
+    raridade: "RARA",
+    stats: { caf: 88, foc: 93, bug: 89, call: 76, res: 82 },
+  },
+  {
+    id: 10,
+    nome: "Bianca",
+    imagem: "/images/bianca.png",
+    raridade: "ÉPICA",
+    stats: { caf: 90, foc: 89, bug: 80, call: 87, res: 94 },
+  },
+  {
+    id: 11,
+    nome: "Rayssa",
+    imagem: "/images/rayssa.png",
+    raridade: "RARA",
+    stats: { caf: 84, foc: 92, bug: 83, call: 88, res: 91 },
+  },
+  {
+    id: 12,
+    nome: "Vinicius Cruz",
+    imagem: "/images/vinicius-cruz.png",
+    raridade: "LENDÁRIA",
+    stats: { caf: 91, foc: 95, bug: 90, call: 82, res: 87 },
+  },
   {
     id: 13,
     nome: "Boss Final",
@@ -148,6 +160,8 @@ export default function Home() {
   const [codigoDigitado, setCodigoDigitado] = useState("");
   const [codigoUsadoHoje, setCodigoUsadoHoje] = useState(false);
   const [mensagemCodigo, setMensagemCodigo] = useState("");
+  const [ranking, setRanking] = useState<any[]>([]);
+  const [carregandoRanking, setCarregandoRanking] = useState(false);
 
   useEffect(() => {
     const hoje = new Date().toDateString();
@@ -173,6 +187,8 @@ export default function Home() {
       localStorage.setItem("team-vsoft-creditos", String(CREDITOS_DIARIOS));
       localStorage.setItem("team-vsoft-data", hoje);
     }
+
+    carregarRanking();
   }, []);
 
   useEffect(() => {
@@ -194,6 +210,67 @@ export default function Home() {
   useEffect(() => {
     localStorage.setItem("team-vsoft-nome-dono", nomeDono);
   }, [nomeDono]);
+
+  useEffect(() => {
+  if (nomeDono.trim()) {
+    salvarRanking();
+  }
+}, [colecao, coins, duplicatas]);
+
+  async function carregarRanking() {
+    setCarregandoRanking(true);
+
+    const { data, error } = await supabase
+      .from("ranking")
+      .select("*")
+      .order("progresso", { ascending: false })
+      .order("coletadas", { ascending: false })
+      .order("atualizado_em", { ascending: true });
+
+    if (error) {
+      console.error("Erro ao carregar ranking:", error);
+      alert(`Erro ao carregar ranking: ${error.message}`);
+      setCarregandoRanking(false);
+      return;
+    }
+
+    if (data) {
+      setRanking(data);
+    }
+
+    setCarregandoRanking(false);
+  }
+
+  async function salvarRanking() {
+    const nomeTratado = nomeDono.trim();
+
+    if (!nomeTratado) return;
+
+    const progressoAtual = Math.round((colecao.length / stickers.length) * 100);
+
+    const { error } = await supabase.from("ranking").upsert(
+      {
+        nome: nomeTratado,
+        coletadas: colecao.length,
+        total: stickers.length,
+        progresso: progressoAtual,
+        coins,
+        duplicatas,
+        atualizado_em: new Date().toISOString(),
+      },
+      {
+        onConflict: "nome",
+      }
+    );
+
+    if (error) {
+      console.error("Erro ao salvar ranking:", error);
+      alert(`Erro ao salvar ranking: ${error.message}`);
+      return;
+    }
+
+    carregarRanking();
+  }
 
   function resgatarCodigo() {
     const hoje = new Date().toDateString();
@@ -217,13 +294,17 @@ export default function Home() {
   }
 
   function salvarNome() {
-    const nomeTratado = nomeDono.trim();
+  const nomeTratado = nomeDono.trim();
 
-    if (!nomeTratado) return;
+  if (!nomeTratado) return;
 
-    setNomeDono(nomeTratado);
-    setEditandoNome(false);
-  }
+  setNomeDono(nomeTratado);
+  setEditandoNome(false);
+
+  setTimeout(() => {
+    salvarRanking();
+  }, 100);
+}
 
   function sortearRaridade() {
     const numero = Math.random() * 100;
@@ -244,17 +325,9 @@ export default function Home() {
     setMensagemTroca("");
     setRaridadeSuspense("ÉPICA");
 
-    setTimeout(() => {
-      setRaridadeSuspense("RARA");
-    }, 350);
-
-    setTimeout(() => {
-      setRaridadeSuspense("LENDÁRIA");
-    }, 700);
-
-    setTimeout(() => {
-      setRaridadeSuspense("SECRETA");
-    }, 950);
+    setTimeout(() => setRaridadeSuspense("RARA"), 350);
+    setTimeout(() => setRaridadeSuspense("LENDÁRIA"), 700);
+    setTimeout(() => setRaridadeSuspense("SECRETA"), 950);
 
     setTimeout(() => {
       const raridadeEscolhida = sortearRaridade();
@@ -537,6 +610,29 @@ export default function Home() {
         <button className="botao-reset" onClick={resetarAlbum}>
           Resetar álbum
         </button>
+
+        <div className="ranking">
+          <h2>🏆 Ranking geral</h2>
+
+          {carregandoRanking && <p>Carregando ranking...</p>}
+
+          {!carregandoRanking && ranking.length === 0 && (
+            <p>Ninguém entrou no ranking ainda.</p>
+          )}
+
+          {!carregandoRanking &&
+            ranking.map((jogador, index) => (
+              <div className="ranking-item" key={jogador.id}>
+                <strong>
+                  {index + 1}. {jogador.nome}
+                </strong>
+
+                <span>
+                  {jogador.coletadas}/{jogador.total}
+                </span>
+              </div>
+            ))}
+        </div>
       </section>
 
       {albumAberto && (
