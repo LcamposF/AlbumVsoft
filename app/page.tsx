@@ -146,6 +146,21 @@ const stickers = [
     stats: { caf: 89, foc: 91, bug: 84, call: 81, res: 80 },
   },
   {
+    id: 19,
+    nome: "Gabriela",
+    imagem: "/images/gabriela.png",
+    raridade: "ÉPICA",
+    stats: { caf: 89, foc: 87, bug: 88, call: 78, res: 89 },
+  },
+  {
+    id: 20,
+    nome: "Louise",
+    imagem: "/images/louise.png",
+    raridade: "ÉPICA",
+    stats: { caf: 86, foc: 90, bug: 85, call: 80, res: 84 },
+
+  },
+  {
     id: 50,
     nome: "The Boss",
     imagem: "/images/boss.png",
