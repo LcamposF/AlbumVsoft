@@ -5,17 +5,18 @@ import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 
 const CREDITOS_DIARIOS = 3;
-const CODIGO_DIARIO = "VSOFT2026";
+
+
+const CUSTO_TROCA: Record<string, number> = {
+  ÉPICA: 3,
+  RARA: 5,
+  LENDÁRIA: 8,
+  SECRETA: 15,
+};
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-console.log("SUPABASE URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
-console.log(
-  "SUPABASE KEY EXISTE:",
-  Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
 );
 
 const stickers = [
@@ -109,7 +110,8 @@ const stickers = [
     imagem: "/images/pricilla.png",
     raridade: "ÉPICA",
     stats: { caf: 90, foc: 93, bug: 82, call: 85, res: 80 },
-  },{
+  },
+  {
     id: 14,
     nome: "Fábio",
     imagem: "/images/fabio.png",
@@ -122,7 +124,6 @@ const stickers = [
     imagem: "/images/brendo.png",
     raridade: "ÉPICA",
     stats: { caf: 84, foc: 88, bug: 89, call: 82, res: 87 },
-
   },
   {
     id: 16,
@@ -158,7 +159,126 @@ const stickers = [
     imagem: "/images/louise.png",
     raridade: "ÉPICA",
     stats: { caf: 86, foc: 90, bug: 85, call: 80, res: 84 },
+  },
+  {
+    id: 21,
+    nome: "Wanderson",
+    imagem: "/images/wanderson.png",
+    raridade: "RARA",
+    stats: { caf: 82, foc: 88, bug: 80, call: 77, res: 86 },
+  },
+  {
+    id: 22,
+    nome: "Vinicius H.",
+    imagem: "/images/viniciush.png",
+    raridade: "RARA",
+    stats: { caf: 87, foc: 90, bug: 86, call: 80, res: 85 },
+  },
+  {
+    id: 23,
+    nome: "João V.",
+    imagem: "/images/joaov.png",
+    raridade: "RARA",
+    stats: { caf: 82, foc: 88, bug: 80, call: 77, res: 86 },
+  },
+  {
+    id: 24,
+    nome: "Yago",
+    imagem: "/images/yago.png",
+    raridade: "ÉPICA",
+    stats: { caf: 88, foc: 92, bug: 84, call: 79, res: 90 },
+  },
+  {
+    id: 25,
+    nome: "Paulo",
+    imagem: "/images/paulo.png",
+    raridade: "ÉPICA",
+    stats: { caf: 82, foc: 88, bug: 80, call: 77, res: 86 },
+  },
+  {
+    id: 26,
+    nome: "Ícaro",
+    imagem: "/images/icaro.png",
+    raridade: "LENDÁRIA",
+    stats: { caf: 82, foc: 88, bug: 80, call: 77, res: 86 },
+  },
+  {
+    id: 27,
+    nome: "Flávio B.",
+    imagem: "/images/flavio.png",
+    raridade: "RARA",
+    stats: { caf: 88, foc: 92, bug: 84, call: 79, res: 90 },
+  },
+  {
+    id: 28,
+    nome: "Anderson",
+    imagem: "/images/anderson.png",
+    raridade: "ÉPICA",
+    stats: { caf: 82, foc: 88, bug: 80, call: 77, res: 86 },
+  },
+  {
+    id: 29,
+    nome: "Carlos",
+    imagem: "/images/carlos.png",
+    raridade: "LENDÁRIA",
+    stats: { caf: 85, foc: 90, bug: 82, call: 78, res: 89 },
+  },
+  {
 
+    id: 30,
+    nome: "Lucas Eduardo",
+    imagem: "/images/lucas.png",
+    raridade: "RARA",
+    stats: { caf: 80, foc: 85, bug: 78, call: 75, res: 82 },
+  },
+  {
+    id: 31,
+    nome: "Vivian",
+    imagem: "/images/vivian.png",
+    raridade: "ÉPICA",
+    stats: { caf: 82, foc: 88, bug: 80, call: 77, res: 86 },
+  },
+  {
+    id: 32,
+    nome: "Alyne",
+    imagem: "/images/alyne.png",
+    raridade: "LENDÁRIA",
+    stats: { caf: 82, foc: 88, bug: 80, call: 77, res: 86 },
+  },
+  {
+    id: 33,
+    nome: "Willian Roberto",
+    imagem: "/images/willian.png",
+    raridade: "LENDÁRIA",
+    stats: { caf: 85, foc: 90, bug: 82, call: 78, res: 89 },
+  },
+  {
+    id: 34,
+    nome: "Cleibia",
+    imagem: "/images/cleibia.png",
+    raridade: "RARA",
+    stats: { caf: 80, foc: 85, bug: 78, call: 75, res: 82 },
+  },
+  {
+    id: 35,
+    nome: "Renata",
+    imagem: "/images/renata.png",
+    raridade: "RARA",
+    stats: { caf: 82, foc: 88, bug: 80, call: 77, res: 86 },
+  },
+  {
+    id: 36,
+    nome: "Arthur L.",
+    imagem: "/images/arthur.png",
+    raridade: "ÉPICA",
+    stats: { caf: 88, foc: 92, bug: 84, call: 79, res: 90 },
+  },
+  {
+    id: 37,
+    nome: "josé",
+    imagem: "/images/jose.png",
+    raridade: "LENDÁRIA",
+    stats: { caf: 80, foc: 85, bug: 78, call: 75, res: 82 },
   },
   {
     id: 50,
@@ -201,6 +321,13 @@ function Stats({ stats, menor = false }: any) {
   );
 }
 
+function classeRaridade(raridade: string) {
+  if (raridade === "ÉPICA") return "epica";
+  if (raridade === "RARA") return "rara";
+  if (raridade === "LENDÁRIA") return "lendaria";
+  return "secreta";
+}
+
 export default function Home() {
   const [figurinha, setFigurinha] = useState<any>(null);
   const [colecao, setColecao] = useState<any[]>([]);
@@ -211,12 +338,16 @@ export default function Home() {
   const [albumAberto, setAlbumAberto] = useState(false);
   const [duplicatas, setDuplicatas] = useState(0);
   const [mensagemTroca, setMensagemTroca] = useState("");
+  const [figurinhaEscolhidaTroca, setFigurinhaEscolhidaTroca] = useState("");
+  const [trocaAberta, setTrocaAberta] = useState(false);
   const [raridadeSuspense, setRaridadeSuspense] = useState("");
   const [nomeDono, setNomeDono] = useState("");
   const [editandoNome, setEditandoNome] = useState(false);
   const [codigoDigitado, setCodigoDigitado] = useState("");
   const [codigoUsadoHoje, setCodigoUsadoHoje] = useState(false);
   const [mensagemCodigo, setMensagemCodigo] = useState("");
+  const [codigoDiario, setCodigoDiario] = useState("");
+const [creditosCodigo, setCreditosCodigo] = useState(1);
   const [ranking, setRanking] = useState<any[]>([]);
   const [carregandoRanking, setCarregandoRanking] = useState(false);
 
@@ -246,6 +377,7 @@ export default function Home() {
     }
 
     carregarRanking();
+    carregarCodigoDiario();
   }, []);
 
   useEffect(() => {
@@ -269,10 +401,10 @@ export default function Home() {
   }, [nomeDono]);
 
   useEffect(() => {
-  if (nomeDono.trim()) {
-    salvarRanking();
-  }
-}, [colecao, coins, duplicatas]);
+    if (nomeDono.trim()) {
+      salvarRanking();
+    }
+  }, [colecao, coins, duplicatas]);
 
   async function carregarRanking() {
     setCarregandoRanking(true);
@@ -286,7 +418,6 @@ export default function Home() {
 
     if (error) {
       console.error("Erro ao carregar ranking:", error);
-      alert(`Erro ao carregar ranking: ${error.message}`);
       setCarregandoRanking(false);
       return;
     }
@@ -322,53 +453,76 @@ export default function Home() {
 
     if (error) {
       console.error("Erro ao salvar ranking:", error);
-      alert(`Erro ao salvar ranking: ${error.message}`);
       return;
     }
 
     carregarRanking();
   }
+  async function carregarCodigoDiario() {
+  const hoje = new Date().toISOString().slice(0, 10);
 
-  function resgatarCodigo() {
-    const hoje = new Date().toDateString();
-    const codigoTratado = codigoDigitado.trim().toUpperCase();
+  const { data, error } = await supabase
+    .from("codigos_diarios")
+    .select("codigo, creditos")
+    .eq("data", hoje)
+    .eq("ativo", true)
+    .single();
 
-    if (codigoUsadoHoje) {
-      setMensagemCodigo("Código diário já usado hoje.");
-      return;
-    }
-
-    if (codigoTratado !== CODIGO_DIARIO) {
-      setMensagemCodigo("Código inválido.");
-      return;
-    }
-
-    setCreditos(creditos + 1);
-    setCodigoUsadoHoje(true);
-    setCodigoDigitado("");
-    setMensagemCodigo("Código aceito! +1 crédito.");
-    localStorage.setItem("team-vsoft-codigo-data", hoje);
+  if (error) {
+    console.error("Erro ao carregar código diário:", error);
+    setCodigoDiario("");
+    return;
   }
 
-  function salvarNome() {
-  const nomeTratado = nomeDono.trim();
-
-  if (!nomeTratado) return;
-
-  setNomeDono(nomeTratado);
-  setEditandoNome(false);
-
-  setTimeout(() => {
-    salvarRanking();
-  }, 100);
+  setCodigoDiario(data.codigo.toUpperCase());
+  setCreditosCodigo(data.creditos);
 }
+  function resgatarCodigo() {
+  const hoje = new Date().toDateString();
+  const codigoTratado = codigoDigitado.trim().toUpperCase();
+
+  if (codigoUsadoHoje) {
+    setMensagemCodigo("Código diário já usado hoje.");
+    return;
+  }
+
+  if (!codigoDiario) {
+    setMensagemCodigo("Nenhum código diário ativo hoje.");
+    return;
+  }
+
+  if (codigoTratado !== codigoDiario) {
+    setMensagemCodigo("Código inválido.");
+    return;
+  }
+
+  setCreditos(creditos + creditosCodigo);
+  setCodigoUsadoHoje(true);
+  setCodigoDigitado("");
+  setMensagemCodigo(`Código aceito! +${creditosCodigo} crédito(s).`);
+  localStorage.setItem("team-vsoft-codigo-data", hoje);
+}
+
+  function salvarNome() {
+    const nomeTratado = nomeDono.trim();
+
+    if (!nomeTratado) return;
+
+    setNomeDono(nomeTratado);
+    setEditandoNome(false);
+
+    setTimeout(() => {
+      salvarRanking();
+    }, 100);
+  }
+  
 
   function sortearRaridade() {
     const numero = Math.random() * 100;
 
-    if (numero > 98) return "SECRETA";
-    if (numero > 92) return "LENDÁRIA";
-    if (numero > 70) return "RARA";
+    if (numero > 99) return "SECRETA";
+    if (numero > 94) return "LENDÁRIA";
+    if (numero > 65) return "RARA";
 
     return "ÉPICA";
   }
@@ -403,11 +557,46 @@ export default function Home() {
         (item) => !colecao.some((card) => card.id === item.id)
       );
 
-      const opcoesParaSortear =
-        novasDaRaridade.length > 0 ? novasDaRaridade : filtradas;
+      const repetidasDaRaridade = filtradas.filter((item) =>
+        colecao.some((card) => card.id === item.id)
+      );
+
+      const progressoAtual = colecao.length / stickers.length;
+
+      let chanceNova = 0.7;
+
+      if (progressoAtual > 0.3) chanceNova = 0.5;
+      if (progressoAtual > 0.5) chanceNova = 0.35;
+      if (progressoAtual > 0.7) chanceNova = 0.2;
+      if (progressoAtual > 0.9) chanceNova = 0.1;
+
+      if (raridadeEscolhida === "LENDÁRIA") {
+        chanceNova -= 0.15;
+      }
+
+      if (raridadeEscolhida === "SECRETA") {
+        chanceNova -= 0.25;
+      }
+
+      chanceNova = Math.max(chanceNova, 0.1);
+
+      const pegarNova =
+        novasDaRaridade.length > 0 && Math.random() < chanceNova;
+
+      let opcoesParaSortear = [];
+
+      if (pegarNova) {
+        opcoesParaSortear = novasDaRaridade;
+      } else if (repetidasDaRaridade.length > 0) {
+        opcoesParaSortear = repetidasDaRaridade;
+      } else {
+        opcoesParaSortear = filtradas;
+      }
 
       const aleatoria =
-        opcoesParaSortear[Math.floor(Math.random() * opcoesParaSortear.length)];
+        opcoesParaSortear[
+          Math.floor(Math.random() * opcoesParaSortear.length)
+        ];
 
       setTimeout(() => {
         setFigurinha(aleatoria);
@@ -436,27 +625,40 @@ export default function Home() {
   }
 
   function trocarDuplicatas() {
-    if (duplicatas < 3) {
-      setMensagemTroca("Você precisa de 3 duplicatas para trocar.");
+    if (!figurinhaSelecionada) {
+      setMensagemTroca("Escolha uma figurinha para trocar.");
       return;
     }
 
-    const faltantes = stickers.filter(
-      (item) => !colecao.some((card) => card.id === item.id)
-    );
-
-    if (faltantes.length === 0) {
-      setMensagemTroca("Seu álbum já está completo.");
+    if (colecao.some((card) => card.id === figurinhaSelecionada.id)) {
+      setMensagemTroca("Você já tem essa figurinha.");
       return;
     }
 
-    const nova = faltantes[Math.floor(Math.random() * faltantes.length)];
+    if (duplicatas < custoTroca) {
+      setMensagemTroca(
+        `Você precisa de ${custoTroca} duplicatas para trocar por ${
+          figurinhaSelecionada.secreto
+            ? "a carta secreta"
+            : figurinhaSelecionada.nome
+        }.`
+      );
+      return;
+    }
 
-    setColecao([...colecao, nova]);
-    setFigurinha(nova);
+    setColecao([...colecao, figurinhaSelecionada]);
+    setFigurinha(figurinhaSelecionada);
     setRepetida(false);
-    setDuplicatas(duplicatas - 3);
-    setMensagemTroca(`Troca realizada! Você recebeu ${nova.nome}.`);
+    setDuplicatas(duplicatas - custoTroca);
+    setMensagemTroca(
+      `Troca realizada! Você recebeu ${
+        figurinhaSelecionada.secreto
+          ? "uma carta secreta"
+          : figurinhaSelecionada.nome
+      }.`
+    );
+    setFigurinhaEscolhidaTroca("");
+    setTrocaAberta(false);
   }
 
   function resetarAlbum() {
@@ -467,6 +669,7 @@ export default function Home() {
     setCoins(0);
     setDuplicatas(0);
     setMensagemTroca("");
+    setFigurinhaEscolhidaTroca("");
     setRaridadeSuspense("");
     setCodigoDigitado("");
     setCodigoUsadoHoje(false);
@@ -482,6 +685,18 @@ export default function Home() {
 
   const progresso = Math.round((colecao.length / stickers.length) * 100);
   const albumCompleto = colecao.length === stickers.length;
+
+  const faltantes = stickers.filter(
+    (item) => !colecao.some((card) => card.id === item.id)
+  );
+
+  const figurinhaSelecionada = stickers.find(
+    (item) => String(item.id) === figurinhaEscolhidaTroca
+  );
+
+  const custoTroca = figurinhaSelecionada
+    ? CUSTO_TROCA[figurinhaSelecionada.raridade]
+    : 0;
 
   return (
     <main className="home">
@@ -525,12 +740,55 @@ export default function Home() {
             Duplicatas: <strong>{duplicatas}</strong>
           </span>
 
+          <div className="troca-select">
+  <button
+    type="button"
+    className="troca-select-botao"
+    onClick={() => setTrocaAberta(!trocaAberta)}
+    disabled={albumCompleto}
+  >
+    <span>
+      {figurinhaSelecionada
+        ? `${figurinhaSelecionada.secreto ? "?????" : figurinhaSelecionada.nome} - ${
+            figurinhaSelecionada.raridade
+          }`
+        : "Escolha uma figurinha"}
+    </span>
+
+    <strong>⌄</strong>
+  </button>
+
+  {trocaAberta && !albumCompleto && (
+    <div className="troca-menu">
+      {faltantes.map((item) => (
+        <button
+          type="button"
+          key={item.id}
+          className={`troca-opcao troca-${classeRaridade(item.raridade)}`}
+          onClick={() => {
+            setFigurinhaEscolhidaTroca(String(item.id));
+            setTrocaAberta(false);
+          }}
+        >
+          <span>{item.secreto ? "?????" : item.nome}</span>
+
+          <small>
+            {item.raridade} • {CUSTO_TROCA[item.raridade]} duplicatas
+          </small>
+        </button>
+      ))}
+    </div>
+  )}
+</div>
+
           <button
             className="botao-troca"
             onClick={trocarDuplicatas}
-            disabled={duplicatas < 3 || albumCompleto}
+            disabled={!figurinhaSelecionada || duplicatas < custoTroca || albumCompleto}
           >
-            Trocar 3 por 1 faltante
+            {figurinhaSelecionada
+              ? `Trocar por ${custoTroca} duplicatas`
+              : "Escolha uma troca"}
           </button>
 
           {mensagemTroca && <p>{mensagemTroca}</p>}
@@ -592,6 +850,8 @@ export default function Home() {
             <strong>{figurinha.raridade}</strong>
 
             <Stats stats={figurinha.stats} />
+            
+            
 
             {repetida && (
               <div className="repetida">
