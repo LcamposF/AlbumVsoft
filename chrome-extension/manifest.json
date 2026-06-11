@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Álbum VSOFT",
+  "description": "Acesso rápido ao álbum oficial do time de operações.",
+  "version": "1.0.0",
+  "action": {
+    "default_title": "Abrir Álbum VSOFT",
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "icons": {
+    "128": "icon.png"
+  },
+  "permissions": ["tabs"]
+}

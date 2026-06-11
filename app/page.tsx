@@ -773,8 +773,8 @@ const [creditosCodigo, setCreditosCodigo] = useState(1);
           <span>{item.secreto ? "?????" : item.nome}</span>
 
           <small>
-            {item.raridade} • {CUSTO_TROCA[item.raridade]} duplicatas
-          </small>
+  Custo: {CUSTO_TROCA[item.raridade]} duplicatas
+</small>
         </button>
       ))}
     </div>
