@@ -8,10 +8,10 @@ const CREDITOS_DIARIOS = 3;
 
 
 const CUSTO_TROCA: Record<string, number> = {
-  ÉPICA: 3,
-  RARA: 5,
-  LENDÁRIA: 8,
-  SECRETA: 15,
+  ÉPICA: 6,
+  RARA: 12,
+  LENDÁRIA: 18,
+  SECRETA: 24,
 };
 
 const supabase = createClient(
@@ -882,7 +882,7 @@ const [creditosCodigo, setCreditosCodigo] = useState(1);
         </div>
 
         <div className="codigo-diario">
-          <span>Código diário</span>
+          <span>Código bônus</span>
 
           <div>
             <input
