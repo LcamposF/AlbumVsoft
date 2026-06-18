@@ -605,7 +605,7 @@ const [creditosCodigo, setCreditosCodigo] = useState(1);
 
         if (jaTem) {
           setRepetida(true);
-          setCoins((valorAtual) => valorAtual + 50);
+          setCoins((valorAtual) => valorAtual + 10);
           setDuplicatas((valorAtual) => valorAtual + 1);
         } else {
           setColecao([...colecao, aleatoria]);
@@ -855,7 +855,7 @@ const [creditosCodigo, setCreditosCodigo] = useState(1);
 
             {repetida && (
               <div className="repetida">
-                🔁 Repetida! +50 coins e +1 duplicata
+                🔁 Repetida! +10 coins e +1 duplicata
               </div>
             )}
           </div>
