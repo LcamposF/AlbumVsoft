@@ -856,7 +856,7 @@ const [creditosCodigo, setCreditosCodigo] = useState(1);
 
             {repetida && (
               <div className="repetida">
-                🔁 Repetida! +10 coins e +1 duplicata
+                🔁 Repetida! +40 coins e +1 duplicata
               </div>
             )}
           </div>
