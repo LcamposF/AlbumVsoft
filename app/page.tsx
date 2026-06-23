@@ -290,6 +290,7 @@ const stickers = [
   },
 ];
 
+
 function Stats({ stats, menor = false }: any) {
   return (
     <div className={menor ? "stats stats-menor" : "stats"}>
@@ -605,7 +606,7 @@ const [creditosCodigo, setCreditosCodigo] = useState(1);
 
         if (jaTem) {
           setRepetida(true);
-          setCoins((valorAtual) => valorAtual + 10);
+          setCoins((valorAtual) => valorAtual + 40);
           setDuplicatas((valorAtual) => valorAtual + 1);
         } else {
           setColecao([...colecao, aleatoria]);
