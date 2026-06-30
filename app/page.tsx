@@ -564,22 +564,22 @@ const [creditosCodigo, setCreditosCodigo] = useState(1);
 
       const progressoAtual = colecao.length / stickers.length;
 
-      let chanceNova = 0.7;
+      let chanceNova = 0.85;
 
-      if (progressoAtual > 0.3) chanceNova = 0.5;
-      if (progressoAtual > 0.5) chanceNova = 0.35;
-      if (progressoAtual > 0.7) chanceNova = 0.2;
-      if (progressoAtual > 0.9) chanceNova = 0.1;
+      if (progressoAtual > 0.3) chanceNova = 0.7;
+      if (progressoAtual > 0.5) chanceNova = 0.55;
+      if (progressoAtual > 0.7) chanceNova = 0.4;
+      if (progressoAtual > 0.9) chanceNova = 0.25;
 
       if (raridadeEscolhida === "LENDÁRIA") {
-        chanceNova -= 0.15;
-      }
+        chanceNova -= 0.08;
+}
 
       if (raridadeEscolhida === "SECRETA") {
-        chanceNova -= 0.25;
-      }
+        chanceNova -= 0.12;
+}
 
-      chanceNova = Math.max(chanceNova, 0.1);
+      chanceNova = Math.max(chanceNova, 0.2);
 
       const pegarNova =
         novasDaRaridade.length > 0 && Math.random() < chanceNova;
