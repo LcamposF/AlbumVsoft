@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 
-const CREDITOS_DIARIOS = 3;
+const CREDITOS_DIARIOS = 30;
 
 
 const CUSTO_TROCA: Record<string, number> = {
