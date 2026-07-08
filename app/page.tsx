@@ -8,10 +8,10 @@ const CREDITOS_DIARIOS = 3;
 
 
 const CUSTO_TROCA: Record<string, number> = {
-  ÉPICA: 6,
-  RARA: 12,
-  LENDÁRIA: 18,
-  SECRETA: 24,
+  ÉPICA: 1,
+  RARA: 1,
+  LENDÁRIA: 1,
+  SECRETA: 1,
 };
 
 const supabase = createClient(
